@@ -30,6 +30,11 @@ CreatorOS is designed to help answer:
 | [Troubleshooting](Troubleshooting.md) | Common installation, authentication and API errors |
 | [Roadmap](Roadmap.md) | Current maturity, planned capabilities and API feasibility |
 | [Contributing](Contributing.md) | Development workflow, testing and documentation standards |
+| [Implementation Details](Implementation-Details.md) | Runtime, configuration, local paths, MCP inventory and error taxonomy |
+| [Data Model and Analytics](Data-Model-and-Analytics.md) | SQLite schema, metrics, provenance and reporting limits |
+| [Intelligence Methods](Intelligence-Methods.md) | Momentum, bottleneck and publishing-time methodology |
+| [Claude Integration](Claude-Integration.md) | MCP server identity, prompts, resources and Claude workflows |
+| [Release and Operations](Release-and-Operations.md) | Testing, acceptance, release and operational practices |
 
 ## Project links
 
