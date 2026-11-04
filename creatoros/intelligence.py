@@ -256,6 +256,17 @@ def primary_recommendation(diagnoses: list[dict], period: dict, recent_n: int = 
         }
     top, n = counts.most_common(1)[0]
     share = n / max(len(pool), 1)
+    if share < 0.3:  # a pattern in under 30% of recent videos is not a "main" bottleneck
+        return {
+            "label": "ai_recommendation", "bottleneck": "none_dominant",
+            "headline": f"No dominant bottleneck: the most common pattern ('{top}') appears in only {n} of "
+                        f"{len(pool)} recent videos.",
+            "actions": (PLAYBOOK["winning"]["actions"] if winners else
+                        ["Keep a consistent schedule and collect more uploads so patterns become measurable."]),
+            "evidence": trend_notes + [f"Bottleneck counts across {len(pool)} recent videos: {dict(counts)}."],
+            "replicate_these": [{"video_id": w["video_id"], "title": w["title"]} for w in winners[:3]],
+            "confidence": "low",
+        }
     examples = [d for d in pool if d["bottleneck"] == top][:3]
     confidence = "high" if share >= 0.5 and len(pool) >= 8 else "medium" if share >= 0.3 and len(pool) >= 5 else "low"
     return {
@@ -358,6 +369,10 @@ def publishing_cohorts(videos: list[dict], tz_name: str = "UTC", fmt: str | None
         "how_to_validate": ("Publish the next 4 comparable videos alternating the recommended slot and your usual "
                             "slot, then call youtube_recommend_publishing_time again to compare."),
     }
+    if not best_day or not best_block:
+        rec["note"] = ("No weekday/time slot has 3 or more comparable videos yet, so no reliable best slot can be "
+                       "named. Your uploads are concentrated in a few slots; publish on 2-3 other days to compare.")
+        rec["slots_needed"] = "3+ videos per slot"
     if best_day and best_day["lift_vs_typical_pct"] < 10:
         rec["note"] = "Differences between days are small (<10%); timing is probably not your main growth lever."
     return {**result, "status": "ok", "by_weekday": days, "by_time_block": blocks, "recommendation": rec}

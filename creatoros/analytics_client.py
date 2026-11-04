@@ -40,7 +40,7 @@ class YouTubeAnalytics:
             kw["sort"] = sort
         if max_results:
             kw["maxResults"] = max_results
-        resp = self.api.reports().query(**kw).execute()
+        resp = self.api.reports().query(**kw).execute(num_retries=3)
         cols = [h["name"] for h in resp.get("columnHeaders", [])]
         return [dict(zip(cols, row)) for row in resp.get("rows", []) or []]
 

@@ -262,7 +262,7 @@ Logs: `~/.creatoros/logs/server.log` and `tool_calls.jsonl`.
 ## For developers
 
 ```bash
-pip install -e ".[dev]" && pytest -q      # 21 offline tests
+pip install -e ".[dev]" && pytest -q      # 23 offline tests
 ```
 Architecture, feasibility matrix and roadmap: `docs/ARCHITECTURE.md`.
 
@@ -389,7 +389,8 @@ finds rising/declining videos → returns one prioritized, evidence-backed recom
 | 18 offline unit/plumbing tests (engine, error mapping, encrypted vault, tool registry, confirmation gate, stdout safety, stubbed vertical slice) | Pass |
 | Real MCP client over stdio: initialize, list 15 tools / 3 resources / 3 prompts, call tools, structured errors | Pass |
 | OAuth request: correct read-only scopes, offline access, PKCE | Pass (URL generation verified) |
-| Live run 1 (Windows, 2026-11-04) | 10/15 pass; failures: #8 Windows lacked timezone data (fixed: `tzdata` dependency), #11 comments rejected for read-only scope (fixed: API-key path). Impressions/CTR rejected for these queries — handled as documented limitation. v0.1.1 retest pending |
+| Live run 1 (Windows, 2026-11-04) | 10/15 pass; failures: #8 Windows lacked timezone data (fixed: `tzdata` dependency), #11 comments rejected for read-only scope (fixed: API-key path). Impressions/CTR rejected for these queries — handled as documented limitation. |
+| Live run 2 (Windows, v0.1.1) | 12/15 pass, 2 by design (Phases 4-5), 1 verified offline. #12 failed on a transient YouTube 500 error → v0.1.2 adds automatic retries with backoff on all Google calls. Also: health-check headline no longer claims a 'main' bottleneck below 30% of recent videos; publishing-time explains when no slot has 3+ videos |
 
 Acceptance scenarios 9 (ideas) and 10 (calendar) belong to Phases 4 and 5 and are reported as such by the test runner.
 
@@ -410,7 +411,7 @@ youtube-claude-mcp/
 │   ├── config.py            # Paths, scopes, settings
 │   └── connect.py           # `creatoros-connect` command
 ├── scripts/acceptance_test.py   # 15 live acceptance scenarios -> acceptance_results.md
-├── tests/test_creatoros.py      # 21 offline tests
+├── tests/test_creatoros.py      # 23 offline tests
 ├── docs/ARCHITECTURE.md
 └── pyproject.toml
 ```

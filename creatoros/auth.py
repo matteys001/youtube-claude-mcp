@@ -122,7 +122,7 @@ def run_connect_flow(open_browser: bool = True) -> dict:
 
     from googleapiclient.discovery import build
     yt = build("youtube", "v3", credentials=creds, cache_discovery=False)
-    resp = yt.channels().list(part="snippet,statistics,contentDetails", mine=True).execute()
+    resp = yt.channels().list(part="snippet,statistics,contentDetails", mine=True).execute(num_retries=3)
     items = resp.get("items", [])
     if not items:
         raise CreatorOSError(UNAVAILABLE_DATA, "This Google account has no YouTube channel.",

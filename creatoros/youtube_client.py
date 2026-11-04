@@ -58,7 +58,7 @@ class YouTubeData:
 
     # ---------------------------------------------------------- channel --
     def channel(self) -> dict:
-        resp = self.yt.channels().list(part="snippet,statistics,contentDetails,brandingSettings", mine=True).execute()
+        resp = self.yt.channels().list(part="snippet,statistics,contentDetails,brandingSettings", mine=True).execute(num_retries=3)
         items = resp.get("items", [])
         if not items:
             return {}
@@ -87,7 +87,7 @@ class YouTubeData:
         token = None
         while len(ids) < max_videos:
             resp = self.yt.playlistItems().list(
-                part="contentDetails", playlistId=uploads_playlist_id, maxResults=50, pageToken=token).execute()
+                part="contentDetails", playlistId=uploads_playlist_id, maxResults=50, pageToken=token).execute(num_retries=3)
             ids += [i["contentDetails"]["videoId"] for i in resp.get("items", [])]
             token = resp.get("nextPageToken")
             if not token:
@@ -99,7 +99,7 @@ class YouTubeData:
         for batch in _chunks(list(dict.fromkeys(video_ids)), 50):
             resp = self.yt.videos().list(
                 part="snippet,contentDetails,statistics,status,liveStreamingDetails", id=",".join(batch),
-                maxResults=50).execute()
+                maxResults=50).execute(num_retries=3)
             out += [self._normalize(v) for v in resp.get("items", [])]
         return out
 
@@ -139,7 +139,7 @@ class YouTubeData:
         while len(out) < max_results:
             resp = self.yt.commentThreads().list(
                 part="snippet", videoId=video_id, maxResults=min(100, max_results - len(out)),
-                order=order, textFormat="plainText", pageToken=token).execute()
+                order=order, textFormat="plainText", pageToken=token).execute(num_retries=3)
             for t in resp.get("items", []):
                 top = t["snippet"]["topLevelComment"]["snippet"]
                 out.append({

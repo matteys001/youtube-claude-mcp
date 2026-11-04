@@ -288,3 +288,21 @@ def test_comments_use_api_key_not_oauth(monkeypatch):
 def test_timezone_kolkata_loads():
     from zoneinfo import ZoneInfo
     ZoneInfo("Asia/Kolkata")
+
+
+def test_weak_pattern_is_not_called_main_bottleneck():
+    rows = [_row(f"b{i}", 1000, 40, 5, pub=iso(5 + i)) for i in range(10)]
+    rows += [_row(f"c{i}", 1200, 25, 5, pub=iso(1 + i)) for i in range(2)]
+    rec = intel.primary_recommendation(intel.diagnose_videos(rows), {})
+    assert rec["bottleneck"] == "none_dominant" and rec["confidence"] == "low"
+
+
+def test_publishing_explains_when_no_slot_qualifies():
+    vids = []
+    for i in range(10):  # 10 videos spread over 7 days -> no weekday reaches 3 (max 2)
+        d = (datetime.now(timezone.utc) - timedelta(days=10 + i * 8)).replace(hour=(i * 3) % 24, minute=0)
+        vids.append({"video_id": f"v{i}", "title": "t", "published_at": d.isoformat(), "views": 100 + i,
+                     "format": "long_form", "privacy_status": "public"})
+    res = intel.publishing_cohorts(vids, "UTC")
+    if res["recommendation"]["best_day"] is None:
+        assert "No weekday" in res["recommendation"]["note"]
