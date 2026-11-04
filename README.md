@@ -1,3 +1,8 @@
+<!-- CreatorOS repository banner -->
+<p align="center">
+  <img src="assets/creatoros-banner.svg" alt="CreatorOS — YouTube Creator Intelligence for Claude" width="100%" />
+</p>
+
 # YouTube Claude MCP — CreatorOS
 
 **YouTube Creator Intelligence for Claude.** Connect your YouTube channel and ask Claude how it is performing,
