@@ -9,7 +9,7 @@ The complete project wiki is available in [docs/wiki](docs/wiki/Home.md), includ
 
 # CreatorOS – YouTube Creator Intelligence for Claude
 
-![version](https://img.shields.io/badge/version-0.3.2-blue) ![plugin](https://img.shields.io/badge/Claude-plugin-orange) ![extension](https://img.shields.io/badge/Claude%20Desktop-extension%20(MCPB)-purple) ![access](https://img.shields.io/badge/YouTube%20access-read--only-green) ![license](https://img.shields.io/badge/license-MIT-lightgrey)
+![version](https://img.shields.io/badge/version-0.3.3-blue) ![plugin](https://img.shields.io/badge/Claude-plugin-orange) ![extension](https://img.shields.io/badge/Claude%20Desktop-extension%20(MCPB)-purple) ![access](https://img.shields.io/badge/YouTube%20access-read--only-green) ![license](https://img.shields.io/badge/license-MIT-lightgrey)
 
 ## Description
 
@@ -114,7 +114,8 @@ CreatorOS uses Google's official APIs. One-time setup (about 15 minutes):
 4. **Audience → Test users → Add users** → the Gmail that owns your channel → **Save**.
 5. **Clients → Create client → Desktop app → Create → Download JSON**.
 6. Give CreatorOS the client:
-   - **Plugin (Cowork / Claude Code):** when you enable the plugin, Claude asks for **Google OAuth Client ID** and **Client Secret** — copy both from the client's page in Google Cloud. The secret is kept in secure storage.
+   - **Plugin in Claude Code:** when you enable the plugin, Claude asks for **Google OAuth Client ID** and **Client Secret** (optional settings; the secret is kept in secure storage).
+   - **Plugin in Cowork:** Cowork does not ask for plugin settings, so save the downloaded JSON as `client_secret.json` in the `.creatoros` folder (same as the manual install below).
    - **Extension:** Settings → Extensions → CreatorOS → **Configure** → *Google OAuth client file* → select the JSON.
    - **Manual install:** save it as `client_secret.json` in the `.creatoros` folder of your user directory
      (Windows: `move "%USERPROFILE%\Downloads\client_secret_*.json" "%USERPROFILE%\.creatoros\client_secret.json"` after `mkdir "%USERPROFILE%\.creatoros"`).
@@ -206,7 +207,7 @@ All tools are annotated for the Anthropic Directory: `readOnlyHint` (12 tools) o
 
 ## Privacy Policy
 
-CreatorOS runs locally and has no servers or telemetry. Full policy: **https://matteys.com/creatoros/privacy** (source: [PRIVACY.md](PRIVACY.md)).
+CreatorOS runs locally and has no servers or telemetry. Full policy: [https://matteys.com/creatoros/privacy](https://matteys.com/creatoros/privacy) (source: [PRIVACY.md](PRIVACY.md)).
 
 ### Data collection
 - **Accessed (read-only, with your Google consent):** channel info, video metadata and public counts, private YouTube Analytics for your own channel, and public comments (only with an API key).
