@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
+<defs>
+<linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#071421"/><stop offset=".52" stop-color="#10283B"/><stop offset="1" stop-color="#07111F"/></linearGradient>
+<linearGradient id="accent"><stop stop-color="#42D6C5"/><stop offset="1" stop-color="#2786F5"/></linearGradient>
+<linearGradient id="yt"><stop stop-color="#FF5B63"/><stop offset="1" stop-color="#E62117"/></linearGradient>
+<radialGradient id="glow"><stop stop-color="#268EB5" stop-opacity=".35"/><stop offset="1" stop-color="#268EB5" stop-opacity="0"/></radialGradient>
+<pattern id="grid" width="48" height="48" patternUnits="userSpaceOnUse"><path d="M48 0H0V48" fill="none" stroke="#9BD5E7" stroke-opacity=".07"/></pattern>
+<filter id="shadow" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="22"/></filter>
+</defs>
+<rect width="1600" height="900" fill="url(#bg)"/><rect width="1600" height="900" fill="url(#grid)"/>
+<ellipse cx="1240" cy="430" rx="540" ry="470" fill="url(#glow)"/>
+<circle cx="1345" cy="440" r="250" fill="#1B7B9B" opacity=".10" filter="url(#shadow)"/>
+<g font-family="Inter,Segoe UI,Arial,sans-serif">
+<rect x="112" y="112" width="194" height="42" rx="21" fill="#15394A" stroke="#43D5C6" stroke-opacity=".7"/><circle cx="137" cy="133" r="5" fill="#48E0C8"/>
+<text x="155" y="140" font-size="16" font-weight="700" letter-spacing="2.6" fill="#A9F2E8">CREATOR INTELLIGENCE</text>
+<text x="105" y="330" font-size="100" font-weight="800" letter-spacing="-4" fill="#F5FAFF">Creator</text>
+<text x="105" y="438" font-size="100" font-weight="800" letter-spacing="-4" fill="#F5FAFF">OS<tspan fill="#4AD8C8">.</tspan></text>
+<text x="112" y="515" font-size="30" font-weight="500" fill="#B9D1E0">YouTube intelligence, built for creators.</text>
+<text x="112" y="575" font-size="22" fill="#83A6BA">Connect your channel. Understand performance.</text>
+<text x="112" y="610" font-size="22" fill="#83A6BA">Turn real data into your next best move.</text>
+<g transform="translate(112 690)"><rect width="188" height="54" rx="27" fill="#123B4B" stroke="#2C8290"/><text x="94" y="34" font-size="18" font-weight="700" text-anchor="middle" fill="#D8FFF8">CHANNEL</text><rect x="204" width="188" height="54" rx="27" fill="#123B4B" stroke="#2C8290"/><text x="298" y="34" font-size="18" font-weight="700" text-anchor="middle" fill="#D8FFF8">CONTENT</text><rect x="408" width="188" height="54" rx="27" fill="#123B4B" stroke="#2C8290"/><text x="502" y="34" font-size="18" font-weight="700" text-anchor="middle" fill="#D8FFF8">GROWTH</text></g>
+</g>
+<g transform="translate(870 168)">
+<rect x="32" y="28" width="560" height="492" rx="28" fill="#06101B" opacity=".52" filter="url(#shadow)"/><rect width="590" height="510" rx="25" fill="#0D2030" stroke="#3E6A7C" stroke-opacity=".72" stroke-width="2"/><rect x="1" y="1" width="588" height="58" rx="24" fill="#142D40"/>
+<circle cx="31" cy="29" r="6" fill="#FF6B6B"/><circle cx="53" cy="29" r="6" fill="#F8C65B"/><circle cx="75" cy="29" r="6" fill="#47D5AB"/>
+<text x="112" y="37" font-family="Arial,sans-serif" font-size="17" font-weight="700" fill="#D8EAF3" letter-spacing="1">CREATOROS / CHANNEL OVERVIEW</text>
+<g font-family="Arial,sans-serif"><rect x="26" y="82" width="164" height="94" rx="14" fill="#142F42" stroke="#2E5265"/><text x="44" y="111" font-size="13" fill="#8EB0C2">VIEWS</text><text x="44" y="151" font-size="31" font-weight="700" fill="#F4FAFF">128.4K</text><rect x="213" y="82" width="164" height="94" rx="14" fill="#142F42" stroke="#2E5265"/><text x="231" y="111" font-size="13" fill="#8EB0C2">WATCH TIME</text><text x="231" y="151" font-size="31" font-weight="700" fill="#F4FAFF">8.2K</text><rect x="400" y="82" width="164" height="94" rx="14" fill="#142F42" stroke="#2E5265"/><text x="418" y="111" font-size="13" fill="#8EB0C2">SUBSCRIBERS</text><text x="418" y="151" font-size="31" font-weight="700" fill="#F4FAFF">+2.1K</text></g>
+<rect x="26" y="198" width="538" height="210" rx="14" fill="#10283A" stroke="#24485B"/><text x="48" y="229" font-family="Arial,sans-serif" font-size="15" font-weight="700" fill="#D8EAF3">PERFORMANCE TREND</text><g stroke="#345064" stroke-opacity=".6"><path d="M48 270H540M48 312H540M48 354H540M48 390H540"/></g>
+<path d="M48 371 C95 359 103 331 145 341 S214 296 252 308 S326 270 360 280 S434 246 472 258 S520 224 540 231" fill="none" stroke="#48D7C6" stroke-width="5" stroke-linecap="round"/>
+<path d="M48 371 C95 359 103 331 145 341 S214 296 252 308 S326 270 360 280 S434 246 472 258 S520 224 540 231 L540 390 L48 390Z" fill="url(#accent)" opacity=".12"/><circle cx="540" cy="231" r="7" fill="#4DE0CA" stroke="#D3FFF8" stroke-width="3"/>
+<rect x="26" y="430" width="538" height="56" rx="13" fill="#123D43" stroke="#2B8A80"/><circle cx="54" cy="458" r="12" fill="#43D7B9"/><path d="M48 458l4 4 8-9" fill="none" stroke="#08342F" stroke-width="2.5" stroke-linecap="round"/><text x="78" y="464" font-family="Arial,sans-serif" font-size="17" font-weight="700" fill="#D9FFF6">Evidence-led insights. Clear next actions.</text>
+</g>
+<g transform="translate(1230 690)"><rect width="112" height="70" rx="18" fill="url(#yt)"/><path d="M45 19 L45 51 L73 35Z" fill="#FFFFFF"/><rect x="132" width="150" height="70" rx="18" fill="#15364A" stroke="#4AD8C8" stroke-width="2"/><text x="207" y="43" text-anchor="middle" font-family="Arial,sans-serif" font-weight="800" font-size="27" fill="#E7F8FF">MCP</text><path d="M118 35H128" stroke="#67DCCB" stroke-width="3" stroke-linecap="round"/><text x="141" y="101" font-family="Arial,sans-serif" font-size="13" letter-spacing="2" fill="#8AAEBF">YOUTUBE × CLAUDE</text></g>
+<text x="112" y="842" font-family="Arial,sans-serif" font-size="14" letter-spacing="2.6" fill="#66889B">READ-ONLY BY DESIGN  •  POWERED BY YOUR CHANNEL DATA</text>
+</svg>
