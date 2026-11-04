@@ -87,8 +87,9 @@ def run_connect_flow(open_browser: bool = True) -> dict:
         raise CreatorOSError(
             CONFIGURATION,
             f"Google OAuth client file not found at {config.CLIENT_SECRET_FILE}.",
-            "Follow README Step 1: create a 'Desktop app' OAuth client in Google Cloud, download the JSON, "
-            f"rename it to client_secret.json and place it in {config.APP_DIR}.")
+            "Create a 'Desktop app' OAuth client in Google Cloud (README > Configuration), download the JSON, then "
+            "either select it in Claude Desktop > Settings > Extensions > CreatorOS > Configure, "
+            f"or save it as client_secret.json in {config.APP_DIR}.")
     from google_auth_oauthlib.flow import InstalledAppFlow
 
     flow = InstalledAppFlow.from_client_secrets_file(str(config.CLIENT_SECRET_FILE), scopes=config.READ_SCOPES)

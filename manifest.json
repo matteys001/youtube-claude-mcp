@@ -1,0 +1,167 @@
+{
+  "manifest_version": "0.4",
+  "name": "creatoros-youtube",
+  "display_name": "CreatorOS – YouTube Creator Intelligence",
+  "version": "0.2.0",
+  "description": "Ask Claude how your YouTube channel is really doing: analytics, bottlenecks, best publishing times and audience questions — read-only.",
+  "long_description": "CreatorOS connects Claude to **your own YouTube channel** through Google sign-in (read-only).\n\n- **Channel health check** – compares every video with your own same-format baseline and names the real bottleneck: click, discovery, retention or subscriber conversion.\n- **Private analytics** – views, watch time, retention curves, traffic sources, YouTube search terms, countries, subscriber trends.\n- **Fair comparisons** – each video measured over its own first N days after publishing.\n- **Best time to publish** – estimated from your past uploads, with confidence levels and sample sizes.\n- **Audience voice** – the questions viewers ask in comments.\n\nEvery answer is labelled *measured*, *derived*, *estimated* or *recommendation*. CreatorOS never uploads, edits, deletes or comments. Tokens are encrypted on your computer and never leave it except to talk to Google.",
+  "author": {
+    "name": "Sumit Mattey",
+    "email": "sumit@matteys.com",
+    "url": "https://github.com/mattey2026"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mattey2026/youtube-claude-mcp.git"
+  },
+  "homepage": "https://github.com/mattey2026/youtube-claude-mcp",
+  "documentation": "https://github.com/mattey2026/youtube-claude-mcp#readme",
+  "support": "https://github.com/mattey2026/youtube-claude-mcp/issues",
+  "icon": "icon.png",
+  "server": {
+    "type": "uv",
+    "entry_point": "main.py",
+    "mcp_config": {
+      "command": "uv",
+      "args": [
+        "run",
+        "--directory",
+        "${__dirname}",
+        "main.py"
+      ],
+      "env": {
+        "CREATOROS_CLIENT_SECRET": "${user_config.google_oauth_client_file}",
+        "CREATOROS_API_KEY": "${user_config.youtube_api_key}"
+      }
+    }
+  },
+  "tools": [
+    {
+      "name": "youtube_connect_channel",
+      "description": "Connect a YouTube channel via Google sign-in (OAuth 2.0, read-only permissions)."
+    },
+    {
+      "name": "youtube_list_channels",
+      "description": "List YouTube channels connected to CreatorOS and which one is the default."
+    },
+    {
+      "name": "youtube_set_default_channel",
+      "description": "Choose which connected channel tools use when channel_id is omitted."
+    },
+    {
+      "name": "youtube_disconnect_channel",
+      "description": "Revoke CreatorOS's Google access for a channel and delete its local token. Requires explicit confirmation."
+    },
+    {
+      "name": "youtube_get_channel_overview",
+      "description": "Channel profile, public stats, library composition (Shorts vs long-form) and upload cadence."
+    },
+    {
+      "name": "youtube_list_videos",
+      "description": "List the channel's uploaded videos with lifetime public stats (views, likes, comments)."
+    },
+    {
+      "name": "youtube_search_videos",
+      "description": "Search the connected channel's own video library (keyword match; uses no YouTube quota)."
+    },
+    {
+      "name": "youtube_get_video_details",
+      "description": "Full metadata for one video (title, description, tags, duration, format, stats) plus stored stat history."
+    },
+    {
+      "name": "youtube_get_comments",
+      "description": "Top-level comments on a video, with quick derived signals (questions, most-liked) for audience analysis."
+    },
+    {
+      "name": "youtube_get_channel_analytics",
+      "description": "Private channel analytics: totals vs previous period, daily trend, traffic sources, countries, subscriber split."
+    },
+    {
+      "name": "youtube_get_video_analytics",
+      "description": "Private analytics for one video: totals, impressions/CTR (if available), traffic sources,"
+    },
+    {
+      "name": "youtube_compare_videos",
+      "description": "Compare videos on equal footing: each video is measured over its own first N days after publishing."
+    },
+    {
+      "name": "youtube_analyze_channel_performance",
+      "description": "End-to-end health check: syncs videos, pulls analytics for this and the previous period, diagnoses each"
+    },
+    {
+      "name": "youtube_recommend_publishing_time",
+      "description": "Recommend the best weekday and time block to publish, estimated from how your past uploads performed"
+    },
+    {
+      "name": "youtube_get_recommendation_history",
+      "description": "Recommendations CreatorOS made earlier (with their baselines) so you can check them against what happened next."
+    }
+  ],
+  "prompts": [
+    {
+      "name": "channel_health_assessment",
+      "description": "Full health check with bottleneck, evidence and weekly actions",
+      "arguments": [
+        "channel_id"
+      ],
+      "text": "Assess the health of my YouTube channel ${arguments.channel_id}. Call youtube_analyze_channel_performance (28 days), then youtube_get_channel_overview. Report the trend, the main bottleneck with evidence, three actions for this week and which videos to replicate. Keep measured/estimated/recommendation labels."
+    },
+    {
+      "name": "weekly_creator_review",
+      "description": "7-day review and plan",
+      "arguments": [
+        "channel_id"
+      ],
+      "text": "Run my weekly YouTube review for channel ${arguments.channel_id}: youtube_get_channel_analytics (7 days), youtube_analyze_channel_performance (28 days) and youtube_recommend_publishing_time. Summarize what changed and give a 7-day plan."
+    },
+    {
+      "name": "video_performance_analysis",
+      "description": "Deep dive into one video",
+      "arguments": [
+        "video_id"
+      ],
+      "text": "Analyze video ${arguments.video_id}: call youtube_get_video_analytics and youtube_get_comments. Explain drop-off, discovery sources, viewer questions and the single best change for the next similar video."
+    }
+  ],
+  "tools_generated": false,
+  "prompts_generated": false,
+  "keywords": [
+    "youtube",
+    "analytics",
+    "creator",
+    "content strategy",
+    "video",
+    "growth",
+    "seo"
+  ],
+  "license": "MIT",
+  "privacy_policies": [
+    "https://matteys.com/creatoros/privacy"
+  ],
+  "compatibility": {
+    "claude_desktop": ">=0.10.0",
+    "platforms": [
+      "darwin",
+      "win32",
+      "linux"
+    ],
+    "runtimes": {
+      "python": ">=3.10"
+    }
+  },
+  "user_config": {
+    "google_oauth_client_file": {
+      "type": "file",
+      "title": "Google OAuth client file (client_secret.json)",
+      "description": "The 'Desktop app' OAuth client you downloaded from Google Cloud Console (see README → Configuration). Leave empty to use ~/.creatoros/client_secret.json.",
+      "required": false
+    },
+    "youtube_api_key": {
+      "type": "string",
+      "title": "YouTube Data API key (optional)",
+      "description": "Only needed to read comments. Restrict it to 'YouTube Data API v3'. All other features work without it.",
+      "sensitive": true,
+      "required": false
+    }
+  }
+}

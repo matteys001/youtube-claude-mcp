@@ -31,7 +31,8 @@ from .youtube_client import YouTubeData
 log = logging.getLogger("creatoros")
 
 READ = ToolAnnotations(read_only_hint=True, destructive_hint=False, idempotent_hint=True, open_world_hint=True)
-LOCAL_WRITE = ToolAnnotations(read_only_hint=False, destructive_hint=False, idempotent_hint=False, open_world_hint=True)
+LOCAL_WRITE = ToolAnnotations(read_only_hint=False, destructive_hint=True, idempotent_hint=False, open_world_hint=True)
+# (writes local files: encrypted token vault / settings -> destructiveHint per Anthropic directory policy)
 DESTRUCTIVE = ToolAnnotations(read_only_hint=False, destructive_hint=True, idempotent_hint=True, open_world_hint=True)
 
 INSTRUCTIONS = """CreatorOS connects you to the user's own YouTube channel (read-only in this version).

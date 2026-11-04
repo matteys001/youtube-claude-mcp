@@ -4,8 +4,19 @@ from __future__ import annotations
 import os
 from pathlib import Path
 
-APP_DIR = Path(os.environ.get("CREATOROS_HOME", str(Path.home() / ".creatoros"))).expanduser()
-CLIENT_SECRET_FILE = Path(os.environ.get("CREATOROS_CLIENT_SECRET", str(APP_DIR / "client_secret.json"))).expanduser()
+def _env(name: str) -> str | None:
+    """Read an env var, ignoring blanks and unsubstituted MCPB placeholders like ${user_config.x}."""
+    v = os.environ.get(name, "").strip()
+    return None if not v or v.startswith("${") else v
+
+
+APP_DIR = Path(_env("CREATOROS_HOME") or str(Path.home() / ".creatoros")).expanduser()
+_BUNDLED_CLIENT = Path(__file__).parent / "oauth_client.json"  # optional publisher-provided Desktop client
+CLIENT_SECRET_FILE = Path(
+    _env("CREATOROS_CLIENT_SECRET")
+    or (str(APP_DIR / "client_secret.json") if (APP_DIR / "client_secret.json").exists() or not _BUNDLED_CLIENT.exists()
+        else str(_BUNDLED_CLIENT))
+).expanduser()
 TOKENS_DIR = APP_DIR / "tokens"
 LOG_DIR = APP_DIR / "logs"
 DB_PATH = APP_DIR / "creatoros.db"
@@ -18,9 +29,9 @@ def api_key() -> str | None:
     """Optional Google API key (YouTube Data API v3) used ONLY to read public comments.
     YouTube requires the broader write-capable 'force-ssl' OAuth scope for comments, so we use a
     key instead and keep the channel connection strictly read-only."""
-    k = os.environ.get("CREATOROS_API_KEY")
+    k = _env("CREATOROS_API_KEY")
     if k:
-        return k.strip()
+        return k
     if API_KEY_FILE.exists():
         k = API_KEY_FILE.read_text(encoding="utf-8-sig").strip()
         return k or None

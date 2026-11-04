@@ -306,3 +306,16 @@ def test_publishing_explains_when_no_slot_qualifies():
     res = intel.publishing_cohorts(vids, "UTC")
     if res["recommendation"]["best_day"] is None:
         assert "No weekday" in res["recommendation"]["note"]
+
+
+def test_every_tool_has_exactly_one_directory_annotation():
+    """Anthropic directory policy: each tool is readOnlyHint=true XOR destructiveHint=true."""
+    for t in run(server.mcp.list_tools()):
+        ro, de = bool(t.annotations.read_only_hint), bool(t.annotations.destructive_hint)
+        assert ro != de, t.name
+        assert t.annotations.title or t.title, t.name
+
+
+def test_env_placeholders_are_ignored(monkeypatch):
+    monkeypatch.setenv("CREATOROS_API_KEY", "${user_config.youtube_api_key}")
+    assert config.api_key() in (None,) or not config.api_key().startswith("${")

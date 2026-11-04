@@ -1,0 +1,16 @@
+.venv/
+.git/
+.github/
+__pycache__/
+*.pyc
+.pytest_cache/
+*.egg-info/
+tests/
+scripts/
+docs/
+acceptance_results.*
+client_secret*.json
+api_key.txt
+*.mcpb
+uv.lock
+assets/

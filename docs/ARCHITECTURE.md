@@ -98,7 +98,7 @@ anything about other days from history alone.
 | Phase | Scope | Status |
 |---|---|---|
 | 0 | Feasibility, scopes, architecture, acceptance criteria | **Done (this document)** |
-| 1 | OAuth, channel discovery, videos, details, search, comments, analytics, performance analysis, publishing time | **Built; offline-tested; awaiting live run on a real channel** |
+| 1 | OAuth, channel discovery, videos, details, search, comments, analytics, performance analysis, publishing time | **Released 0.2.0 (Claude Desktop extension)** |
 | 2 | Reporting API ingestion, weekly/monthly reports, subscriber trends, Shorts vs long-form via `creatorContentType` | Next |
 | 3 | Transcripts (owner), topic classification, semantic search (pgvector), content journey per series | Planned |
 | 4 | External research, competitor watchlists, SEO and title/thumbnail review, ideation | Planned |
@@ -115,7 +115,7 @@ finds rising/declining videos → returns one prioritized, evidence-backed recom
 
 | Check | Result |
 |---|---|
-| 23 offline unit/plumbing tests (engine, error mapping, encrypted vault, tool registry, confirmation gate, stdout safety, stubbed vertical slice) | Pass |
+| 25 offline unit/plumbing tests (engine, error mapping, encrypted vault, tool registry, confirmation gate, stdout safety, stubbed vertical slice) | Pass |
 | Real MCP client over stdio: initialize, list 15 tools / 3 resources / 3 prompts, call tools, structured errors | Pass |
 | OAuth request: correct read-only scopes, offline access, PKCE | Pass (URL generation verified) |
 | Live run 1 (Windows, 2026-11-04) | 10/15 pass; failures: #8 Windows lacked timezone data (fixed: `tzdata` dependency), #11 comments rejected for read-only scope (fixed: API-key path). Impressions/CTR rejected for these queries — handled as documented limitation. |
