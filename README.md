@@ -113,6 +113,29 @@ The terminal prints `Connected: <your channel name>`. Run the same command again
 
 ---
 
+## Step 3b — Add an API key for comments (3 min, optional but recommended)
+
+YouTube only lets apps read comments through OAuth if they hold a **write-capable** permission.
+CreatorOS stays read-only, so it reads public comments with a simple API key instead.
+
+1. Google Cloud Console (same `CreatorOS` project) → **APIs & Services → Credentials**.
+2. **+ Create credentials → API key**. Copy the key.
+3. Click the new key → **API restrictions → Restrict key** → tick **YouTube Data API v3** → **Save**.
+4. Save the key in a file named `api_key.txt` inside your `.creatoros` folder:
+
+**Windows** (replace `PASTE-YOUR-KEY` with your key):
+```bat
+echo PASTE-YOUR-KEY> "%USERPROFILE%\.creatoros\api_key.txt"
+```
+**Mac:**
+```bash
+echo "PASTE-YOUR-KEY" > ~/.creatoros/api_key.txt
+```
+
+Without the key, every tool except `youtube_get_comments` still works.
+
+---
+
 ## Step 4 — Add CreatorOS to Claude Desktop
 
 1. Claude Desktop → **Settings → Developer → Edit Config**. This opens `claude_desktop_config.json`.
@@ -202,6 +225,17 @@ Open the generated `acceptance_results.md`. Share it back if anything shows **FA
 
 ---
 
+## Updating to a new version
+
+1. Download the latest ZIP from GitHub (**Code → Download ZIP**) and extract it.
+2. Copy everything from the extracted folder **into** your existing `youtube-claude-mcp` folder and choose **Replace**. Keep your `.venv` folder.
+3. In that folder run (Windows): `.venv\Scripts\pip install -e .` — Mac: `.venv/bin/pip install -e .`
+4. Fully quit and reopen Claude Desktop.
+
+Your connection, history and keys live in `.creatoros` and are not affected.
+
+---
+
 ## Troubleshooting
 
 | Message starts with | Meaning | Fix |
@@ -213,6 +247,8 @@ Open the generated `acceptance_results.md`. Share it back if anything shows **FA
 | `[quota]` | Daily Google quota used | Wait until midnight US Pacific time |
 | `[unavailable_data]` | YouTube has no data for that request | Try a longer period or another video |
 | Tools don't appear in Claude | Config path wrong | Check the path in Step 4 exists; fully restart Claude |
+| `The system cannot find the path specified` (Windows) | Documents is inside OneDrive | Use `%USERPROFILE%\\OneDrive\\Documents\\youtube-claude-mcp` |
+| `No time zone found with key` | Old install without timezone data | Run `pip install -e .` again (v0.1.1+) |
 
 Logs: `~/.creatoros/logs/server.log` and `tool_calls.jsonl`.
 
@@ -226,7 +262,7 @@ Logs: `~/.creatoros/logs/server.log` and `tool_calls.jsonl`.
 ## For developers
 
 ```bash
-pip install -e ".[dev]" && pytest -q      # 18 offline tests
+pip install -e ".[dev]" && pytest -q      # 21 offline tests
 ```
 Architecture, feasibility matrix and roadmap: `docs/ARCHITECTURE.md`.
 
@@ -279,7 +315,7 @@ Legend: **API** = direct official API · **Derived** = computed from API data ·
 | Video inventory | Data API `playlistItems.list` (uploads) | API | 1 quota unit/page (search.list would cost 100) |
 | Video metadata, tags, duration | Data API `videos.list` | API | Tags only visible to owner |
 | Shorts vs long-form flag | — | Derived | No explicit flag in Data API; duration heuristic ≤180s, labelled. Analytics `creatorContentType` to be evaluated in Phase 2 |
-| Comments | Data API `commentThreads.list` | API | Reply/moderation needs `youtube.force-ssl` (Phase 5) |
+| Comments | Data API `commentThreads.list` | API (API key) | Live test showed `youtube.readonly` is rejected (403 insufficientPermissions); public comments read with an API key to stay read-only. Replies/moderation need `youtube.force-ssl` (Phase 5) |
 | Captions / transcript text | Data API `captions.download` | API (owner only) | Needs `youtube.force-ssl`; Phase 3 |
 | Views, watch time, AVD, AVP, subs, likes, shares | Analytics `reports.query` | API | ~48h data lag |
 | Impressions & CTR | Analytics `videoThumbnailImpressions*` | API (listed in official metrics docs) | Requested optionally; tool reports clearly if a report rejects it |
@@ -353,7 +389,7 @@ finds rising/declining videos → returns one prioritized, evidence-backed recom
 | 18 offline unit/plumbing tests (engine, error mapping, encrypted vault, tool registry, confirmation gate, stdout safety, stubbed vertical slice) | Pass |
 | Real MCP client over stdio: initialize, list 15 tools / 3 resources / 3 prompts, call tools, structured errors | Pass |
 | OAuth request: correct read-only scopes, offline access, PKCE | Pass (URL generation verified) |
-| Live Google calls on a real channel | **Not yet run** — the build environment cannot reach Google APIs. Run `scripts/acceptance_test.py` (README Step 6) |
+| Live run 1 (Windows, 2026-11-04) | 10/15 pass; failures: #8 Windows lacked timezone data (fixed: `tzdata` dependency), #11 comments rejected for read-only scope (fixed: API-key path). Impressions/CTR rejected for these queries — handled as documented limitation. v0.1.1 retest pending |
 
 Acceptance scenarios 9 (ideas) and 10 (calendar) belong to Phases 4 and 5 and are reported as such by the test runner.
 
@@ -374,7 +410,7 @@ youtube-claude-mcp/
 │   ├── config.py            # Paths, scopes, settings
 │   └── connect.py           # `creatoros-connect` command
 ├── scripts/acceptance_test.py   # 15 live acceptance scenarios -> acceptance_results.md
-├── tests/test_creatoros.py      # 18 offline tests
+├── tests/test_creatoros.py      # 21 offline tests
 ├── docs/ARCHITECTURE.md
 └── pyproject.toml
 ```

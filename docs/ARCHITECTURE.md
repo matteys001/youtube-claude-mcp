@@ -44,7 +44,7 @@ Legend: **API** = direct official API · **Derived** = computed from API data ·
 | Video inventory | Data API `playlistItems.list` (uploads) | API | 1 quota unit/page (search.list would cost 100) |
 | Video metadata, tags, duration | Data API `videos.list` | API | Tags only visible to owner |
 | Shorts vs long-form flag | — | Derived | No explicit flag in Data API; duration heuristic ≤180s, labelled. Analytics `creatorContentType` to be evaluated in Phase 2 |
-| Comments | Data API `commentThreads.list` | API | Reply/moderation needs `youtube.force-ssl` (Phase 5) |
+| Comments | Data API `commentThreads.list` | API (API key) | Live test showed `youtube.readonly` is rejected (403 insufficientPermissions); public comments read with an API key to stay read-only. Replies/moderation need `youtube.force-ssl` (Phase 5) |
 | Captions / transcript text | Data API `captions.download` | API (owner only) | Needs `youtube.force-ssl`; Phase 3 |
 | Views, watch time, AVD, AVP, subs, likes, shares | Analytics `reports.query` | API | ~48h data lag |
 | Impressions & CTR | Analytics `videoThumbnailImpressions*` | API (listed in official metrics docs) | Requested optionally; tool reports clearly if a report rejects it |
@@ -115,9 +115,9 @@ finds rising/declining videos → returns one prioritized, evidence-backed recom
 
 | Check | Result |
 |---|---|
-| 18 offline unit/plumbing tests (engine, error mapping, encrypted vault, tool registry, confirmation gate, stdout safety, stubbed vertical slice) | Pass |
+| 21 offline unit/plumbing tests (engine, error mapping, encrypted vault, tool registry, confirmation gate, stdout safety, stubbed vertical slice) | Pass |
 | Real MCP client over stdio: initialize, list 15 tools / 3 resources / 3 prompts, call tools, structured errors | Pass |
 | OAuth request: correct read-only scopes, offline access, PKCE | Pass (URL generation verified) |
-| Live Google calls on a real channel | **Not yet run** — the build environment cannot reach Google APIs. Run `scripts/acceptance_test.py` (README Step 6) |
+| Live run 1 (Windows, 2026-11-04) | 10/15 pass; failures: #8 Windows lacked timezone data (fixed: `tzdata` dependency), #11 comments rejected for read-only scope (fixed: API-key path). Impressions/CTR rejected for these queries — handled as documented limitation. v0.1.1 retest pending |
 
 Acceptance scenarios 9 (ideas) and 10 (calendar) belong to Phases 4 and 5 and are reported as such by the test runner.

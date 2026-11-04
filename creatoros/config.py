@@ -11,6 +11,20 @@ LOG_DIR = APP_DIR / "logs"
 DB_PATH = APP_DIR / "creatoros.db"
 KEY_FILE = APP_DIR / ".vault_key"
 SETTINGS_FILE = APP_DIR / "settings.json"
+API_KEY_FILE = APP_DIR / "api_key.txt"
+
+
+def api_key() -> str | None:
+    """Optional Google API key (YouTube Data API v3) used ONLY to read public comments.
+    YouTube requires the broader write-capable 'force-ssl' OAuth scope for comments, so we use a
+    key instead and keep the channel connection strictly read-only."""
+    k = os.environ.get("CREATOROS_API_KEY")
+    if k:
+        return k.strip()
+    if API_KEY_FILE.exists():
+        k = API_KEY_FILE.read_text(encoding="utf-8-sig").strip()
+        return k or None
+    return None
 
 # Phase 1 is strictly read-only. Publishing scopes are added later through
 # incremental authorization, never requested up front.

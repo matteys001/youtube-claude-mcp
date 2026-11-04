@@ -51,7 +51,7 @@ class YouTubeAnalytics:
         except Exception as exc:  # noqa: BLE001
             err = from_exception(exc)
             if err.category in (UNSUPPORTED_METRIC, "system", "permission"):
-                log.info("Optional analytics query unavailable: %s", err)
+                log.debug("Optional analytics query unavailable: %s", err)
                 return [], err.message
             raise err
 

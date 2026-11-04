@@ -254,3 +254,37 @@ def test_oauth_never_writes_to_stdout(monkeypatch, capsys, tmp_path):
     assert out.out == ""
     assert "accounts.google.com" in out.err
     assert "[authentication]" in str(e.value)
+
+
+def test_comments_without_api_key_explains_setup(monkeypatch):
+    auth._save("UCc", {"token": {"token": "t"}, "channel": {"channel_id": "UCc", "title": "C", "uploads_playlist_id": "UUc"}})
+    monkeypatch.setattr(auth, "get_credentials", lambda cid: object())
+    monkeypatch.setattr(config, "api_key", lambda: None)
+    with pytest.raises(Exception) as e:
+        run(server.mcp.call_tool("youtube_get_comments", {"video_id": "abcdefg", "channel_id": "UCc"}))
+    assert "[configuration]" in str(e.value) and "API key" in str(e.value)
+    auth._token_path("UCc").unlink()
+
+
+def test_comments_use_api_key_not_oauth(monkeypatch):
+    auth._save("UCd", {"token": {"token": "t"}, "channel": {"channel_id": "UCd", "title": "D", "uploads_playlist_id": "UUd"}})
+    monkeypatch.setattr(auth, "get_credentials", lambda cid: object())
+    monkeypatch.setattr(config, "api_key", lambda: "KEY123")
+    seen = {}
+
+    class FakeData:
+        def __init__(self, credentials=None, api_key=None):
+            seen["api_key"], seen["creds"] = api_key, credentials
+        def comments(self, vid, n, order):
+            return [{"text": "How did you make this?", "likes": 3}, {"text": "Great", "likes": 9}]
+
+    monkeypatch.setattr(server, "YouTubeData", FakeData)
+    res = run(server.mcp.call_tool("youtube_get_comments", {"video_id": "abcdefg", "channel_id": "UCd"}))
+    assert seen == {"api_key": "KEY123", "creds": None}
+    assert res.structured_content["signals"]["share_of_comments_that_are_questions_pct"] == 50.0
+    auth._token_path("UCd").unlink()
+
+
+def test_timezone_kolkata_loads():
+    from zoneinfo import ZoneInfo
+    ZoneInfo("Asia/Kolkata")

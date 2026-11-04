@@ -262,8 +262,16 @@ async def youtube_get_comments(
 ) -> dict[str, Any]:
     """Top-level comments on a video, with quick derived signals (questions, most-liked) for audience analysis."""
     def work():
-        cid, creds = _ctx(channel_id)
-        cs = YouTubeData(creds).comments(video_id, max_results, order)
+        cid, _creds = _ctx(channel_id)
+        key = config.api_key()
+        if not key:
+            raise CreatorOSError(
+                "configuration",
+                "Reading comments needs a Google API key. YouTube only allows comment access through OAuth with "
+                "a write-capable permission, which CreatorOS deliberately does not request.",
+                "Google Cloud Console > APIs & Services > Credentials > Create credentials > API key; restrict it to "
+                f"'YouTube Data API v3'; paste the key into {config.API_KEY_FILE} (README Step 3b).")
+        cs = YouTubeData(api_key=key).comments(video_id, max_results, order)
         questions = [c for c in cs if "?" in (c["text"] or "")]
         return _envelope(cid, {
             "video_id": video_id, "count": len(cs), "comments": cs,
@@ -273,8 +281,9 @@ async def youtube_get_comments(
                         "most_liked": [{"text": c["text"], "likes": c["likes"]} for c in
                                        sorted(cs, key=lambda c: c["likes"], reverse=True)[:5]],
                         "share_of_comments_that_are_questions_pct": round(len(questions) / len(cs) * 100, 1) if cs else 0}},
-            ["YouTube Data API v3: commentThreads.list"], None,
-            ["Replies are not included. Read-only: this tool never posts or moderates."])
+            ["YouTube Data API v3: commentThreads.list (API key, public comments)"], None,
+            ["Public top-level comments only (held-for-review comments are not visible). Replies are not included. "
+             "Read-only: this tool never posts or moderates."])
     return await _run(work)
 
 

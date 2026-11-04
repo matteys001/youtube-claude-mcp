@@ -50,8 +50,11 @@ def _int(v: Any) -> int | None:
 
 
 class YouTubeData:
-    def __init__(self, credentials):
-        self.yt = build("youtube", "v3", credentials=credentials, cache_discovery=False)
+    def __init__(self, credentials=None, api_key: str | None = None):
+        if api_key:
+            self.yt = build("youtube", "v3", developerKey=api_key, cache_discovery=False)
+        else:
+            self.yt = build("youtube", "v3", credentials=credentials, cache_discovery=False)
 
     # ---------------------------------------------------------- channel --
     def channel(self) -> dict:

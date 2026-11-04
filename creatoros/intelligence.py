@@ -285,7 +285,12 @@ def publishing_cohorts(videos: list[dict], tz_name: str = "UTC", fmt: str | None
     (controls for channel growth over time and video age). We then compare these
     performance indices by weekday and time block in the audience time zone.
     """
-    tz = ZoneInfo(tz_name)
+    try:
+        tz = ZoneInfo(tz_name)
+    except Exception as exc:  # ZoneInfoNotFoundError on Windows without tzdata
+        from .errors import CONFIGURATION, CreatorOSError
+        raise CreatorOSError(CONFIGURATION, f"Timezone '{tz_name}' could not be loaded.",
+                             "Run: .venv\\Scripts\\pip install -e .  (installs the 'tzdata' timezone package)") from exc
     now = datetime.now(timezone.utc)
     pool = [v for v in videos
             if v.get("published_at") and v.get("views") is not None and v.get("privacy_status", "public") == "public"
