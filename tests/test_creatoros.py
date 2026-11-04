@@ -319,3 +319,21 @@ def test_every_tool_has_exactly_one_directory_annotation():
 def test_env_placeholders_are_ignored(monkeypatch):
     monkeypatch.setenv("CREATOROS_API_KEY", "${user_config.youtube_api_key}")
     assert config.api_key() in (None,) or not config.api_key().startswith("${")
+
+
+def test_oauth_client_from_plugin_settings(monkeypatch):
+    monkeypatch.setenv("CREATOROS_GOOGLE_CLIENT_ID", "abc.apps.googleusercontent.com")
+    monkeypatch.setenv("CREATOROS_GOOGLE_CLIENT_SECRET", "s3cret")
+    cfg = config.oauth_client_config()
+    assert cfg["installed"]["client_id"].startswith("abc")
+    monkeypatch.setenv("CREATOROS_GOOGLE_CLIENT_SECRET", "${user_config.google_client_secret}")
+    assert config.oauth_client_config() is None
+
+
+def test_launcher_reports_missing_uv(monkeypatch, capsys):
+    import importlib.util, pathlib
+    spec = importlib.util.spec_from_file_location("launch", pathlib.Path(__file__).parent.parent / "launch.py")
+    mod = importlib.util.module_from_spec(spec); spec.loader.exec_module(mod)
+    monkeypatch.setattr(mod, "find_uv", lambda: None)
+    assert mod.main() == 1
+    assert "uv" in capsys.readouterr().err

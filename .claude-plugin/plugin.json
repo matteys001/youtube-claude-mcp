@@ -1,11 +1,43 @@
 {
   "name": "creatoros-youtube",
   "displayName": "CreatorOS – YouTube Creator Intelligence",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "Ask Claude how your YouTube channel is really doing: private analytics, per-video bottlenecks, fair comparisons, best publishing times and audience questions. Read-only; runs locally on your computer.",
-  "author": { "name": "Sumit Mattey", "email": "sumit@matteys.com", "url": "https://github.com/mattey2026" },
+  "author": {
+    "name": "Sumit Mattey",
+    "email": "sumit@matteys.com",
+    "url": "https://github.com/mattey2026"
+  },
   "homepage": "https://github.com/mattey2026/youtube-claude-mcp",
   "repository": "https://github.com/mattey2026/youtube-claude-mcp",
   "license": "MIT",
-  "keywords": ["youtube", "analytics", "creator", "content-strategy", "growth"]
+  "keywords": [
+    "youtube",
+    "analytics",
+    "creator",
+    "content-strategy",
+    "growth"
+  ],
+  "userConfig": {
+    "google_client_id": {
+      "type": "string",
+      "title": "Google OAuth Client ID",
+      "description": "From Google Cloud Console > Google Auth Platform > Clients > your 'Desktop app' client (ends with .apps.googleusercontent.com). See README > Configuration.",
+      "required": true
+    },
+    "google_client_secret": {
+      "type": "string",
+      "title": "Google OAuth Client Secret",
+      "description": "The client secret of the same Desktop app client. Stored in secure storage.",
+      "sensitive": true,
+      "required": true
+    },
+    "youtube_api_key": {
+      "type": "string",
+      "title": "YouTube Data API key (optional)",
+      "description": "Only needed to read comments. Restrict it to 'YouTube Data API v3'. Stored in secure storage.",
+      "sensitive": true,
+      "required": false
+    }
+  }
 }

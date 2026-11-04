@@ -3,3 +3,5 @@ __pycache__/
 *.egg-info/
 acceptance_results.*
 client_secret.json
+dist/
+*.mcpb

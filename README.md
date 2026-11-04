@@ -9,7 +9,7 @@ The complete project wiki is available in [docs/wiki](docs/wiki/Home.md), includ
 
 # CreatorOS – YouTube Creator Intelligence for Claude
 
-![version](https://img.shields.io/badge/version-0.3.0-blue) ![plugin](https://img.shields.io/badge/Claude-plugin-orange) ![extension](https://img.shields.io/badge/Claude%20Desktop-extension%20(MCPB)-purple) ![access](https://img.shields.io/badge/YouTube%20access-read--only-green) ![license](https://img.shields.io/badge/license-MIT-lightgrey)
+![version](https://img.shields.io/badge/version-0.3.1-blue) ![plugin](https://img.shields.io/badge/Claude-plugin-orange) ![extension](https://img.shields.io/badge/Claude%20Desktop-extension%20(MCPB)-purple) ![access](https://img.shields.io/badge/YouTube%20access-read--only-green) ![license](https://img.shields.io/badge/license-MIT-lightgrey)
 
 ## Description
 
@@ -45,7 +45,7 @@ Every answer is labelled so you know what is fact and what is a suggestion:
 
 CreatorOS runs **on your computer**, so it works in **Claude Cowork** (desktop app) and **Claude Code**. It does not run in claude.ai web chat (local servers are not loaded there).
 
-**Prerequisite for the plugin:** the `uv` Python runner (one-time, 1 minute).
+**Prerequisites for the plugin:** Python 3.10+ on your PATH, and the `uv` Python runner (one-time, 1 minute). CreatorOS runs with the exact package versions pinned in `uv.lock`.
 - Windows (PowerShell): `powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"`
 - macOS: `curl -LsSf https://astral.sh/uv/install.sh | sh`
 
@@ -59,7 +59,7 @@ The plugin adds the CreatorOS server and a **youtube-channel-review** skill that
 
 ### Option A — Claude Desktop extension
 
-1. Download **[`creatoros-youtube-0.3.0.mcpb`](https://github.com/mattey2026/youtube-claude-mcp/raw/main/dist/creatoros-youtube-0.3.0.mcpb)** (also attached to the [latest release](https://github.com/mattey2026/youtube-claude-mcp/releases/latest)).
+1. Download the **`.mcpb`** file from the [latest release](https://github.com/mattey2026/youtube-claude-mcp/releases/latest).
 2. Double-click it (or drag it into Claude Desktop, or **Settings → Extensions → Install Extension**).
 3. Review the permissions and click **Install**.
 4. Complete [Configuration](#configuration) below.
@@ -113,7 +113,8 @@ CreatorOS uses Google's official APIs. One-time setup (about 15 minutes):
 3. **Google Auth Platform → Get started**: app name `CreatorOS`, your email → **External** → contact email → agree → **Create**.
 4. **Audience → Test users → Add users** → the Gmail that owns your channel → **Save**.
 5. **Clients → Create client → Desktop app → Create → Download JSON**.
-6. Give CreatorOS the file:
+6. Give CreatorOS the client:
+   - **Plugin (Cowork / Claude Code):** when you enable the plugin, Claude asks for **Google OAuth Client ID** and **Client Secret** — copy both from the client's page in Google Cloud. The secret is kept in secure storage.
    - **Extension:** Settings → Extensions → CreatorOS → **Configure** → *Google OAuth client file* → select the JSON.
    - **Manual install:** save it as `client_secret.json` in the `.creatoros` folder of your user directory
      (Windows: `move "%USERPROFILE%\Downloads\client_secret_*.json" "%USERPROFILE%\.creatoros\client_secret.json"` after `mkdir "%USERPROFILE%\.creatoros"`).
@@ -125,7 +126,7 @@ CreatorOS uses Google's official APIs. One-time setup (about 15 minutes):
 YouTube only allows comment reading through OAuth with a *write-capable* permission, which CreatorOS deliberately does not request.
 1. **APIs & Services → Credentials → + Create credentials → API key**, name `CreatorOS Comments`.
 2. **API restrictions:** select **YouTube Data API v3**. **Application restrictions:** None. **Create**, copy the key.
-3. **Extension:** Configure → *YouTube Data API key*. **Manual:** save it in `.creatoros\api_key.txt`.
+3. **Plugin:** enter it in the plugin's *YouTube Data API key* setting. **Extension:** Configure → *YouTube Data API key*. **Manual:** save it in `.creatoros\api_key.txt`.
 
 ### 3. Connect your channel
 
@@ -331,7 +332,9 @@ Project structure:
 ```
 youtube-claude-mcp/
 ├── .claude-plugin/plugin.json  # Claude plugin manifest (directory listing)
-├── .mcp.json              # Plugin's local MCP server definition
+├── .mcp.json              # Plugin's local MCP server definition (python launch.py)
+├── launch.py              # Starts the server with uv using pinned versions (uv.lock)
+├── uv.lock                # Exact dependency versions
 ├── skills/youtube-channel-review/SKILL.md  # Workflow skill for Claude
 ├── manifest.json          # Claude Desktop extension manifest (MCPB 0.4, uv runtime)
 ├── main.py                # Extension entry point
@@ -340,7 +343,6 @@ youtube-claude-mcp/
 ├── creatoros/             # Server package (see Architecture)
 ├── scripts/acceptance_test.py
 ├── tests/test_creatoros.py
-├── dist/                  # built extension (.mcpb)
 ├── docs/                  # ARCHITECTURE, SOLUTION_AND_TECHNICAL_ARCHITECTURE, SUBMISSION
 ├── PRIVACY.md · CHANGELOG.md · LICENSE
 └── pyproject.toml

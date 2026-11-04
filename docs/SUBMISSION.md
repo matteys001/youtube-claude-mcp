@@ -53,3 +53,17 @@ publish the Google app and complete Google verification for `youtube.readonly` a
 
 Host CreatorOS as a remote server (Streamable HTTP, OAuth 2.0, per-user tenant isolation) to work in claude.ai chat and on mobile,
 then submit it as an **MCP connector** and pair it with this plugin.
+
+## Validation report (portal) — how each item is handled
+
+| Portal item | Type | Resolution |
+|---|---|---|
+| Unpinned uvx launcher | **Blocking** | Fixed in 0.3.1: `uv.lock` committed, `uv run --locked` |
+| Server start line not accepted | Info | Fixed: `.mcp.json` runs `python ${CLAUDE_PLUGIN_ROOT}/launch.py` |
+| MCP server command wasn't read | Policy hold | Fixed: literal path under `${CLAUDE_PLUGIN_ROOT}` |
+| Uses a credential from the user's machine | Policy hold | Credentials now come from `userConfig` (secret marked `sensitive`). File fallbacks remain only for manual (non-plugin) installs — explain to reviewer |
+| Files the validator couldn't inspect (`dist/*.mcpb`) | Policy hold | Fixed: removed from repo |
+| Image file the code could run (`icon.png`) | Policy hold | Plain PNG used only as the listing/extension icon — reviewer confirms |
+| Contains a download-and-run command | Note | Only in README install instructions for `uv`; nothing to change |
+| Local MCP server: not on claude.ai | Info | Expected: works in Cowork and Claude Code |
+| Local MCP servers accepted only from Verified organizations | Info (future) | Not refused yet. Long-term path: host CreatorOS remotely (Phase 6) and submit as an MCP connector, or get the organization verified |

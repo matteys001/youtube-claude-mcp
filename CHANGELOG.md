@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.3.1 — 2026-11-04
+- Directory validation fixes: dependencies pinned in `uv.lock` and started with `uv run --locked`; server started by a shipped file (`python ${CLAUDE_PLUGIN_ROOT}/launch.py`).
+- Google OAuth Client ID/Secret and API key are collected through plugin settings (`userConfig`, secrets in secure storage) instead of files.
+- Built `.mcpb` removed from the repository (published on GitHub Releases instead).
+
 ## 0.3.0 — 2026-11-04
 - Packaged as a **Claude plugin** for the Claude directory (Anthropic no longer lists local MCPB extensions on their own since 25 Sep 2026): `.claude-plugin/plugin.json`, `.mcp.json` (local server via `uv`), and the `youtube-channel-review` skill.
 - Passes `claude plugin validate` directory checks.

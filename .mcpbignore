@@ -12,7 +12,6 @@ acceptance_results.*
 client_secret*.json
 api_key.txt
 *.mcpb
-uv.lock
 assets/
 dist/
 .claude-plugin/
