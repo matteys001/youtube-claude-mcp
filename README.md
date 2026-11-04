@@ -207,7 +207,7 @@ All tools are annotated for the Anthropic Directory: `readOnlyHint` (12 tools) o
 
 ## Privacy Policy
 
-CreatorOS runs locally and has no servers or telemetry. Full policy: [https://matteys.com/creatoros/privacy](https://matteys.com/creatoros/privacy) (source: [PRIVACY.md](PRIVACY.md)).
+CreatorOS runs locally and has no servers or telemetry. Full policy: **[PRIVACY.md](https://github.com/mattey2026/youtube-claude-mcp/blob/main/PRIVACY.md)**.
 
 ### Data collection
 - **Accessed (read-only, with your Google consent):** channel info, video metadata and public counts, private YouTube Analytics for your own channel, and public comments (only with an API key).

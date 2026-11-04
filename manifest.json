@@ -136,7 +136,7 @@
   ],
   "license": "MIT",
   "privacy_policies": [
-    "https://matteys.com/creatoros/privacy"
+    "https://github.com/mattey2026/youtube-claude-mcp/blob/main/PRIVACY.md"
   ],
   "compatibility": {
     "claude_desktop": ">=0.10.0",

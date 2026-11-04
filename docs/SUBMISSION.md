@@ -24,7 +24,7 @@ Local MCP servers in plugins load in **Cowork (on the user's computer) and Claud
 | LICENSE (MIT) | ✅ |
 | `claude plugin validate` | ✅ Validation passed, nothing to report |
 | Every tool has `title` + `readOnlyHint` or `destructiveHint` | ✅ (enforced by tests) |
-| Privacy policy URL | ⚠️ Publish `PRIVACY.md` at https://matteys.com/creatoros/privacy |
+| Privacy policy URL | ✅ https://github.com/mattey2026/youtube-claude-mcp/blob/main/PRIVACY.md (move to own domain before Google OAuth verification) |
 | Tested in Cowork on Windows and macOS | ⚠️ To do (upload ZIP: Customize → Plugins → Add → Upload plugin) |
 | Google OAuth: shared, verified client | ⚠️ Recommended before wide release (see below) |
 

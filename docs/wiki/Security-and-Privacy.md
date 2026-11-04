@@ -1,5 +1,8 @@
 # Security & Privacy
 
+> **Official privacy policy:** [PRIVACY.md](https://github.com/mattey2026/youtube-claude-mcp/blob/main/PRIVACY.md)
+
+
 CreatorOS handles Google OAuth credentials and channel analytics. Protecting those credentials and respecting the user's consent are core product requirements.
 
 ## 1. Current permission model
