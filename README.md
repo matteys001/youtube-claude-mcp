@@ -5,7 +5,7 @@
 
 # CreatorOS – YouTube Creator Intelligence for Claude
 
-![version](https://img.shields.io/badge/version-0.2.0-blue) ![extension](https://img.shields.io/badge/Claude%20Desktop-extension%20(MCPB)-purple) ![access](https://img.shields.io/badge/YouTube%20access-read--only-green) ![license](https://img.shields.io/badge/license-MIT-lightgrey)
+![version](https://img.shields.io/badge/version-0.3.0-blue) ![plugin](https://img.shields.io/badge/Claude-plugin-orange) ![extension](https://img.shields.io/badge/Claude%20Desktop-extension%20(MCPB)-purple) ![access](https://img.shields.io/badge/YouTube%20access-read--only-green) ![license](https://img.shields.io/badge/license-MIT-lightgrey)
 
 ## Description
 
@@ -39,9 +39,23 @@ Every answer is labelled so you know what is fact and what is a suggestion:
 
 ## Installation
 
-### Option A — Claude Desktop extension (recommended)
+CreatorOS runs **on your computer**, so it works in **Claude Cowork** (desktop app) and **Claude Code**. It does not run in claude.ai web chat (local servers are not loaded there).
 
-1. Download **[`creatoros-youtube-0.2.0.mcpb`](https://github.com/mattey2026/youtube-claude-mcp/raw/main/dist/creatoros-youtube-0.2.0.mcpb)** (also attached to the [latest release](https://github.com/mattey2026/youtube-claude-mcp/releases/latest)).
+**Prerequisite for the plugin:** the `uv` Python runner (one-time, 1 minute).
+- Windows (PowerShell): `powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"`
+- macOS: `curl -LsSf https://astral.sh/uv/install.sh | sh`
+
+### Option 0 — Claude plugin (Cowork and Claude Code)
+
+- **From the Claude directory** (once listed): **Customize → Browse plugins**, search *CreatorOS*, click **Add**.
+- **Cowork, before listing:** on GitHub click **Code → Download ZIP**, then in Claude **Customize → Plugins → Add → Upload plugin** and choose the ZIP.
+- **Claude Code:** `claude --plugin-dir ./youtube-claude-mcp` (from a clone of this repo).
+
+The plugin adds the CreatorOS server and a **youtube-channel-review** skill that teaches Claude which tool to use for each question. Then complete [Configuration](#configuration).
+
+### Option A — Claude Desktop extension
+
+1. Download **[`creatoros-youtube-0.3.0.mcpb`](https://github.com/mattey2026/youtube-claude-mcp/raw/main/dist/creatoros-youtube-0.3.0.mcpb)** (also attached to the [latest release](https://github.com/mattey2026/youtube-claude-mcp/releases/latest)).
 2. Double-click it (or drag it into Claude Desktop, or **Settings → Extensions → Install Extension**).
 3. Review the permissions and click **Install**.
 4. Complete [Configuration](#configuration) below.
@@ -284,12 +298,12 @@ grouped by weekday and 3-hour block in the audience timezone; a slot needs ≥ 3
 
 | Phase | Scope | Status |
 |---|---|---|
-| 1 | OAuth, library, analytics, diagnosis, publishing time, comments | **Released (0.2.0)** |
+| 1 | OAuth, library, analytics, diagnosis, publishing time, comments | **Released (0.3.0, plugin + extension)** |
 | 2 | Reporting API history, weekly/monthly reports, native Shorts detection | Next |
 | 3 | Transcripts, topic classification, semantic search | Planned |
 | 4 | Market & competitor research, SEO, title/thumbnail review, ideation | Planned |
 | 5 | Content calendar, approved uploads/scheduling, comment replies | Planned |
-| 6 | Hosted multi-user platform, web app, RBAC | Planned |
+| 6 | Hosted remote MCP server (works in claude.ai chat, submit as MCP connector), web app, RBAC | Planned |
 
 ## Verification status
 
@@ -297,6 +311,7 @@ grouped by weekday and 3-hour block in the audience timezone; a slot needs ≥ 3
 |---|---|
 | 25 offline tests (engine, errors, vault, annotations, stdout safety, stubbed end-to-end) | Pass |
 | MCPB manifest validation + pack + launch via `uv` (Claude Desktop method) | Pass |
+| `claude plugin validate` (Claude Code 2.1.318, directory checks) | Pass — nothing to report |
 | Live run on Windows 11 with a real channel (v0.1.1) | 12/15 pass, 2 later-phase, 1 verified offline; the one failure (transient Google 500) fixed in 0.1.2 with retries |
 | macOS clean-machine run | Pending |
 
@@ -311,6 +326,9 @@ npm i -g @anthropic-ai/mcpb && mcpb pack . creatoros-youtube.mcpb   # build the 
 Project structure:
 ```
 youtube-claude-mcp/
+├── .claude-plugin/plugin.json  # Claude plugin manifest (directory listing)
+├── .mcp.json              # Plugin's local MCP server definition
+├── skills/youtube-channel-review/SKILL.md  # Workflow skill for Claude
 ├── manifest.json          # Claude Desktop extension manifest (MCPB 0.4, uv runtime)
 ├── main.py                # Extension entry point
 ├── icon.png               # 512×512 icon

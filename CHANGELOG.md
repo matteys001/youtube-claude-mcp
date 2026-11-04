@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.3.0 — 2026-11-04
+- Packaged as a **Claude plugin** for the Claude directory (Anthropic no longer lists local MCPB extensions on their own since 25 Sep 2026): `.claude-plugin/plugin.json`, `.mcp.json` (local server via `uv`), and the `youtube-channel-review` skill.
+- Passes `claude plugin validate` directory checks.
+
 ## 0.2.0 — 2026-11-04
 - Packaged as a **Claude Desktop extension** (MCPB, manifest 0.4, `uv` runtime): one-click install, no manual Python setup.
 - Extension settings for the Google OAuth client file and optional YouTube API key.

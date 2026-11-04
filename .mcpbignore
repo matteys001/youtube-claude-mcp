@@ -15,3 +15,6 @@ api_key.txt
 uv.lock
 assets/
 dist/
+.claude-plugin/
+.mcp.json
+skills/
