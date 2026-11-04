@@ -41,7 +41,7 @@ Every answer is labelled so you know what is fact and what is a suggestion:
 
 ### Option A — Claude Desktop extension (recommended)
 
-1. Download **`creatoros-youtube-0.2.0.mcpb`** from the [latest release](https://github.com/mattey2026/youtube-claude-mcp/releases/latest).
+1. Download **[`creatoros-youtube-0.2.0.mcpb`](https://github.com/mattey2026/youtube-claude-mcp/raw/main/dist/creatoros-youtube-0.2.0.mcpb)** (also attached to the [latest release](https://github.com/mattey2026/youtube-claude-mcp/releases/latest)).
 2. Double-click it (or drag it into Claude Desktop, or **Settings → Extensions → Install Extension**).
 3. Review the permissions and click **Install**.
 4. Complete [Configuration](#configuration) below.
@@ -318,6 +318,7 @@ youtube-claude-mcp/
 ├── creatoros/             # Server package (see Architecture)
 ├── scripts/acceptance_test.py
 ├── tests/test_creatoros.py
+├── dist/                  # built extension (.mcpb)
 ├── docs/                  # ARCHITECTURE, SOLUTION_AND_TECHNICAL_ARCHITECTURE, SUBMISSION
 ├── PRIVACY.md · CHANGELOG.md · LICENSE
 └── pyproject.toml
