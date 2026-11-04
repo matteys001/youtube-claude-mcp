@@ -381,3 +381,10 @@ youtube-claude-mcp/
 
 ## License
 Private project of Sumit Mattey. All rights reserved.
+
+
+## Solution & technical architecture
+
+Architecture documentation, including the current solution architecture, implementation-level technical architecture, channel health data-flow sequence, security boundaries, target-state evolution, and phased roadmap:
+
+**[docs/SOLUTION_AND_TECHNICAL_ARCHITECTURE.md](docs/SOLUTION_AND_TECHNICAL_ARCHITECTURE.md)**
