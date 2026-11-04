@@ -1,3 +1,7 @@
+## Documentation Wiki
+
+The complete project wiki is available in [docs/wiki](docs/wiki/Home.md), including setup, user guidance, MCP reference, architecture, security, troubleshooting, roadmap and contribution standards.
+
 <!-- CreatorOS repository banner -->
 <p align="center">
   <img src="assets/creatoros-banner.svg?v=3" alt="CreatorOS — YouTube Creator Intelligence for Claude" width="100%" />
