@@ -1,6 +1,6 @@
 <!-- CreatorOS repository banner -->
 <p align="center">
-  <img src="assets/creatoros-banner.svg" alt="CreatorOS — YouTube Creator Intelligence for Claude" width="100%" />
+  <img src="assets/creatoros-banner.svg?v=3" alt="CreatorOS — YouTube Creator Intelligence for Claude" width="100%" />
 </p>
 
 # CreatorOS – YouTube Creator Intelligence for Claude
