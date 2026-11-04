@@ -1,0 +1,28 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "creatoros-mcp"
+version = "0.1.0"
+description = "CreatorOS: YouTube Creator Intelligence MCP Server (Phase 1 vertical slice)"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+  "mcp>=2.3,<3",
+  "google-api-python-client>=2.150",
+  "google-auth>=2.30",
+  "google-auth-oauthlib>=1.2",
+  "cryptography>=42",
+  "requests>=2.31",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8"]
+
+[project.scripts]
+creatoros-mcp = "creatoros.server:main"
+creatoros-connect = "creatoros.connect:main"
+
+[tool.setuptools.packages.find]
+include = ["creatoros*"]
