@@ -66,4 +66,7 @@ then submit it as an **MCP connector** and pair it with this plugin.
 | Image file the code could run (`icon.png`) | Policy hold | Plain PNG used only as the listing/extension icon — reviewer confirms |
 | Contains a download-and-run command | Note | Only in README install instructions for `uv`; nothing to change |
 | Local MCP server: not on claude.ai | Info | Expected: works in Cowork and Claude Code |
+| Server env name not accepted | Fix | Fixed in 0.3.2: env vars use `CLAUDE_PLUGIN_OPTION_<KEY>` |
+| `uv.lock` too large to inspect | Policy hold | Standard lockfile (pins every package + hashes); required by the pinning rule — reviewer checks |
+| `launch.py` not followed | Policy hold | Small readable Python launcher that runs `uv run --locked` — reviewer checks |
 | Local MCP servers accepted only from Verified organizations | Info (future) | Not refused yet. Long-term path: host CreatorOS remotely (Phase 6) and submit as an MCP connector, or get the organization verified |

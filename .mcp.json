@@ -4,9 +4,9 @@
       "command": "python",
       "args": ["${CLAUDE_PLUGIN_ROOT}/launch.py"],
       "env": {
-        "CREATOROS_GOOGLE_CLIENT_ID": "${user_config.google_client_id}",
-        "CREATOROS_GOOGLE_CLIENT_SECRET": "${user_config.google_client_secret}",
-        "CREATOROS_API_KEY": "${user_config.youtube_api_key}"
+        "CLAUDE_PLUGIN_OPTION_GOOGLE_CLIENT_ID": "${user_config.google_client_id}",
+        "CLAUDE_PLUGIN_OPTION_GOOGLE_CLIENT_SECRET": "${user_config.google_client_secret}",
+        "CLAUDE_PLUGIN_OPTION_YOUTUBE_API_KEY": "${user_config.youtube_api_key}"
       }
     }
   }

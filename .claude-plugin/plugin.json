@@ -1,7 +1,7 @@
 {
   "name": "creatoros-youtube",
   "displayName": "CreatorOS – YouTube Creator Intelligence",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "description": "Ask Claude how your YouTube channel is really doing: private analytics, per-video bottlenecks, fair comparisons, best publishing times and audience questions. Read-only; runs locally on your computer.",
   "author": {
     "name": "Sumit Mattey",

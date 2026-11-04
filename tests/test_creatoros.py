@@ -337,3 +337,11 @@ def test_launcher_reports_missing_uv(monkeypatch, capsys):
     monkeypatch.setattr(mod, "find_uv", lambda: None)
     assert mod.main() == 1
     assert "uv" in capsys.readouterr().err
+
+
+def test_plugin_option_env_names(monkeypatch):
+    monkeypatch.setenv("CLAUDE_PLUGIN_OPTION_GOOGLE_CLIENT_ID", "p.apps.googleusercontent.com")
+    monkeypatch.setenv("CLAUDE_PLUGIN_OPTION_GOOGLE_CLIENT_SECRET", "ps")
+    monkeypatch.setenv("CLAUDE_PLUGIN_OPTION_YOUTUBE_API_KEY", "AIzaTEST")
+    assert config.oauth_client_config()["installed"]["client_id"].startswith("p.")
+    assert config.api_key() == "AIzaTEST"

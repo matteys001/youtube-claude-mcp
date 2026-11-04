@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.3.2 — 2026-11-04
+- Plugin settings passed with Claude's required names (`CLAUDE_PLUGIN_OPTION_<KEY>`).
+
 ## 0.3.1 — 2026-11-04
 - Directory validation fixes: dependencies pinned in `uv.lock` and started with `uv run --locked`; server started by a shipped file (`python ${CLAUDE_PLUGIN_ROOT}/launch.py`).
 - Google OAuth Client ID/Secret and API key are collected through plugin settings (`userConfig`, secrets in secure storage) instead of files.

@@ -2,7 +2,7 @@
   "manifest_version": "0.4",
   "name": "creatoros-youtube",
   "display_name": "CreatorOS – YouTube Creator Intelligence",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "description": "Ask Claude how your YouTube channel is really doing: analytics, bottlenecks, best publishing times and audience questions — read-only.",
   "long_description": "CreatorOS connects Claude to **your own YouTube channel** through Google sign-in (read-only).\n\n- **Channel health check** – compares every video with your own same-format baseline and names the real bottleneck: click, discovery, retention or subscriber conversion.\n- **Private analytics** – views, watch time, retention curves, traffic sources, YouTube search terms, countries, subscriber trends.\n- **Fair comparisons** – each video measured over its own first N days after publishing.\n- **Best time to publish** – estimated from your past uploads, with confidence levels and sample sizes.\n- **Audience voice** – the questions viewers ask in comments.\n\nEvery answer is labelled *measured*, *derived*, *estimated* or *recommendation*. CreatorOS never uploads, edits, deletes or comments. Tokens are encrypted on your computer and never leave it except to talk to Google.",
   "author": {

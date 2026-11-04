@@ -27,7 +27,9 @@ API_KEY_FILE = APP_DIR / "api_key.txt"
 
 def oauth_client_config() -> dict | None:
     """OAuth Desktop client supplied through plugin/extension settings (preferred over files)."""
-    cid, secret = _env("CREATOROS_GOOGLE_CLIENT_ID"), _env("CREATOROS_GOOGLE_CLIENT_SECRET")
+    # Plugin settings arrive as CLAUDE_PLUGIN_OPTION_<KEY>; extension/manual installs use CREATOROS_*.
+    cid = _env("CLAUDE_PLUGIN_OPTION_GOOGLE_CLIENT_ID") or _env("CREATOROS_GOOGLE_CLIENT_ID")
+    secret = _env("CLAUDE_PLUGIN_OPTION_GOOGLE_CLIENT_SECRET") or _env("CREATOROS_GOOGLE_CLIENT_SECRET")
     if not (cid and secret):
         return None
     return {"installed": {"client_id": cid, "client_secret": secret,
@@ -40,7 +42,7 @@ def api_key() -> str | None:
     """Optional Google API key (YouTube Data API v3) used ONLY to read public comments.
     YouTube requires the broader write-capable 'force-ssl' OAuth scope for comments, so we use a
     key instead and keep the channel connection strictly read-only."""
-    k = _env("CREATOROS_API_KEY")
+    k = _env("CLAUDE_PLUGIN_OPTION_YOUTUBE_API_KEY") or _env("CREATOROS_API_KEY")
     if k:
         return k
     if API_KEY_FILE.exists():
