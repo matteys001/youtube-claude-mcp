@@ -2,21 +2,21 @@
   "manifest_version": "0.4",
   "name": "creatoros-youtube",
   "display_name": "CreatorOS – YouTube Creator Intelligence",
-  "version": "0.3.3",
+  "version": "0.3.4",
   "description": "Ask Claude how your YouTube channel is really doing: analytics, bottlenecks, best publishing times and audience questions — read-only.",
   "long_description": "CreatorOS connects Claude to **your own YouTube channel** through Google sign-in (read-only).\n\n- **Channel health check** – compares every video with your own same-format baseline and names the real bottleneck: click, discovery, retention or subscriber conversion.\n- **Private analytics** – views, watch time, retention curves, traffic sources, YouTube search terms, countries, subscriber trends.\n- **Fair comparisons** – each video measured over its own first N days after publishing.\n- **Best time to publish** – estimated from your past uploads, with confidence levels and sample sizes.\n- **Audience voice** – the questions viewers ask in comments.\n\nEvery answer is labelled *measured*, *derived*, *estimated* or *recommendation*. CreatorOS never uploads, edits, deletes or comments. Tokens are encrypted on your computer and never leave it except to talk to Google.",
   "author": {
     "name": "Sumit Mattey",
     "email": "sumit@matteys.com",
-    "url": "https://github.com/mattey2026"
+    "url": "https://github.com/matteys001"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/mattey2026/youtube-claude-mcp.git"
+    "url": "https://github.com/matteys001/youtube-claude-mcp.git"
   },
-  "homepage": "https://github.com/mattey2026/youtube-claude-mcp",
-  "documentation": "https://github.com/mattey2026/youtube-claude-mcp#readme",
-  "support": "https://github.com/mattey2026/youtube-claude-mcp/issues",
+  "homepage": "https://github.com/matteys001/youtube-claude-mcp",
+  "documentation": "https://github.com/matteys001/youtube-claude-mcp#readme",
+  "support": "https://github.com/matteys001/youtube-claude-mcp/issues",
   "icon": "icon.png",
   "server": {
     "type": "uv",
@@ -136,7 +136,7 @@
   ],
   "license": "MIT",
   "privacy_policies": [
-    "https://github.com/mattey2026/youtube-claude-mcp/blob/main/PRIVACY.md"
+    "https://github.com/matteys001/youtube-claude-mcp/blob/main/PRIVACY.md"
   ],
   "compatibility": {
     "claude_desktop": ">=0.10.0",

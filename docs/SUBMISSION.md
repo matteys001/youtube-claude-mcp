@@ -24,15 +24,15 @@ Local MCP servers in plugins load in **Cowork (on the user's computer) and Claud
 | LICENSE (MIT) | ✅ |
 | `claude plugin validate` | ✅ Validation passed, nothing to report |
 | Every tool has `title` + `readOnlyHint` or `destructiveHint` | ✅ (enforced by tests) |
-| Privacy policy URL | ✅ https://github.com/mattey2026/youtube-claude-mcp/blob/main/PRIVACY.md (move to own domain before Google OAuth verification) |
+| Privacy policy URL | ✅ https://github.com/matteys001/youtube-claude-mcp/blob/main/PRIVACY.md (move to own domain before Google OAuth verification) |
 | Tested in Cowork on Windows and macOS | ⚠️ To do (upload ZIP: Customize → Plugins → Add → Upload plugin) |
 | Google OAuth: shared, verified client | ⚠️ Recommended before wide release (see below) |
 
 ## Portal steps (Plugin bundle)
 
-1. Connect your GitHub account to claude.ai (the account needs push access to `mattey2026/youtube-claude-mcp`).
+1. Connect your GitHub account to claude.ai (the account needs push access to `matteys001/youtube-claude-mcp`).
 2. Portal → **Submit** → **Plugin bundle**.
-3. **Repository:** `mattey2026/youtube-claude-mcp` · **Plugin path:** leave empty (repo root) · **Branch:** `main`.
+3. **Repository:** `matteys001/youtube-claude-mcp` · **Plugin path:** leave empty (repo root) · **Branch:** `main`.
 4. **Validate.**
 5. **Data-handling answers:**
    - Reads personal data? **Yes** — the user's own YouTube channel data (channel/video metadata, private YouTube Analytics, public comments with optional API key), read-only via Google OAuth.

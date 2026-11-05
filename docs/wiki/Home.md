@@ -38,7 +38,7 @@ CreatorOS is designed to help answer:
 
 ## Project links
 
-- [GitHub repository](https://github.com/mattey2026/youtube-claude-mcp)
+- [GitHub repository](https://github.com/matteys001/youtube-claude-mcp)
 - [README and quick setup](../../README.md)
 - [Solution and Technical Architecture](../SOLUTION_AND_TECHNICAL_ARCHITECTURE.md)
 - [Phase 0 Design and Phase 1 Status](../ARCHITECTURE.md)

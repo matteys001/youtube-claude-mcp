@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.3.4 — 2026-11-05
+- Repository moved to github.com/matteys001/youtube-claude-mcp; all links updated.
+
 ## 0.3.3 — 2026-11-04
 - Plugin settings are optional so the server starts in Cowork (which does not collect plugin settings); falls back to files in `.creatoros`.
 - Fixed privacy-policy link formatting picked up by the directory listing.

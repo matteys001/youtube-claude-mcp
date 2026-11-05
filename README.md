@@ -9,7 +9,7 @@ The complete project wiki is available in [docs/wiki](docs/wiki/Home.md), includ
 
 # CreatorOS – YouTube Creator Intelligence for Claude
 
-![version](https://img.shields.io/badge/version-0.3.3-blue) ![plugin](https://img.shields.io/badge/Claude-plugin-orange) ![extension](https://img.shields.io/badge/Claude%20Desktop-extension%20(MCPB)-purple) ![access](https://img.shields.io/badge/YouTube%20access-read--only-green) ![license](https://img.shields.io/badge/license-MIT-lightgrey)
+![version](https://img.shields.io/badge/version-0.3.4-blue) ![plugin](https://img.shields.io/badge/Claude-plugin-orange) ![extension](https://img.shields.io/badge/Claude%20Desktop-extension%20(MCPB)-purple) ![access](https://img.shields.io/badge/YouTube%20access-read--only-green) ![license](https://img.shields.io/badge/license-MIT-lightgrey)
 
 ## Description
 
@@ -59,7 +59,7 @@ The plugin adds the CreatorOS server and a **youtube-channel-review** skill that
 
 ### Option A — Claude Desktop extension
 
-1. Download the **`.mcpb`** file from the [latest release](https://github.com/mattey2026/youtube-claude-mcp/releases/latest).
+1. Download the **`.mcpb`** file from the [latest release](https://github.com/matteys001/youtube-claude-mcp/releases/latest).
 2. Double-click it (or drag it into Claude Desktop, or **Settings → Extensions → Install Extension**).
 3. Review the permissions and click **Install**.
 4. Complete [Configuration](#configuration) below.
@@ -74,7 +74,7 @@ Requires Python 3.10+.
 **Windows** (Command Prompt):
 ```bat
 cd "%USERPROFILE%\Documents"
-git clone https://github.com/mattey2026/youtube-claude-mcp.git
+git clone https://github.com/matteys001/youtube-claude-mcp.git
 cd youtube-claude-mcp
 python -m venv .venv
 .venv\Scripts\python -m pip install --upgrade pip
@@ -82,7 +82,7 @@ python -m venv .venv
 ```
 **macOS** (Terminal):
 ```bash
-cd ~/Documents && git clone https://github.com/mattey2026/youtube-claude-mcp.git
+cd ~/Documents && git clone https://github.com/matteys001/youtube-claude-mcp.git
 cd youtube-claude-mcp && python3 -m venv .venv
 .venv/bin/pip install --upgrade pip && .venv/bin/pip install -e .
 ```
@@ -207,7 +207,7 @@ All tools are annotated for the Anthropic Directory: `readOnlyHint` (12 tools) o
 
 ## Privacy Policy
 
-CreatorOS runs locally and has no servers or telemetry. Full policy: **[PRIVACY.md](https://github.com/mattey2026/youtube-claude-mcp/blob/main/PRIVACY.md)**.
+CreatorOS runs locally and has no servers or telemetry. Full policy: **[PRIVACY.md](https://github.com/matteys001/youtube-claude-mcp/blob/main/PRIVACY.md)**.
 
 ### Data collection
 - **Accessed (read-only, with your Google consent):** channel info, video metadata and public counts, private YouTube Analytics for your own channel, and public comments (only with an API key).
@@ -220,7 +220,7 @@ CreatorOS's use of information received from Google APIs adheres to the [Google 
 
 ## Support
 
-- Issues and feature requests: https://github.com/mattey2026/youtube-claude-mcp/issues
+- Issues and feature requests: https://github.com/matteys001/youtube-claude-mcp/issues
 - Email: sumit@matteys.com
 - Logs for bug reports: `.creatoros/logs/server.log` and `tool_calls.jsonl` (they contain no tokens or keys).
 

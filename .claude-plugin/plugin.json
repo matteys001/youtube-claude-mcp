@@ -1,15 +1,15 @@
 {
   "name": "creatoros-youtube",
   "displayName": "CreatorOS – YouTube Creator Intelligence",
-  "version": "0.3.3",
+  "version": "0.3.4",
   "description": "Ask Claude how your YouTube channel is really doing: private analytics, per-video bottlenecks, fair comparisons, best publishing times and audience questions. Read-only; runs locally on your computer.",
   "author": {
     "name": "Sumit Mattey",
     "email": "sumit@matteys.com",
-    "url": "https://github.com/mattey2026"
+    "url": "https://github.com/matteys001"
   },
-  "homepage": "https://github.com/mattey2026/youtube-claude-mcp",
-  "repository": "https://github.com/mattey2026/youtube-claude-mcp",
+  "homepage": "https://github.com/matteys001/youtube-claude-mcp",
+  "repository": "https://github.com/matteys001/youtube-claude-mcp",
   "license": "MIT",
   "keywords": [
     "youtube",

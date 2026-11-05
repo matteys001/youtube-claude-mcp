@@ -2,7 +2,7 @@
 
 **Effective date:** 4 November 2026
 **Applies to:** the CreatorOS YouTube Creator Intelligence extension for Claude Desktop ("CreatorOS"), published by Sumit Mattey.
-**Canonical URL:** https://github.com/mattey2026/youtube-claude-mcp/blob/main/PRIVACY.md
+**Canonical URL:** https://github.com/matteys001/youtube-claude-mcp/blob/main/PRIVACY.md
 
 ## Summary
 
@@ -67,4 +67,4 @@ Changes are published at the canonical URL and in this repository's history, wit
 
 ## 9. Contact
 
-Questions or requests: **sumit@matteys.com** · Issues: https://github.com/mattey2026/youtube-claude-mcp/issues
+Questions or requests: **sumit@matteys.com** · Issues: https://github.com/matteys001/youtube-claude-mcp/issues

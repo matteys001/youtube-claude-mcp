@@ -35,7 +35,7 @@ Do not commit this file or share it publicly.
 Clone the repository:
 
 ```bash
-git clone https://github.com/mattey2026/youtube-claude-mcp.git
+git clone https://github.com/matteys001/youtube-claude-mcp.git
 cd youtube-claude-mcp
 ```
 
