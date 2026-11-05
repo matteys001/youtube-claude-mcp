@@ -61,7 +61,7 @@ then submit it as an **MCP connector** and pair it with this plugin.
 | Unpinned uvx launcher | **Blocking** | Fixed in 0.3.1: `uv.lock` committed, `uv run --locked` |
 | Server start line not accepted | Info | Fixed: `.mcp.json` runs `python ${CLAUDE_PLUGIN_ROOT}/launch.py` |
 | MCP server command wasn't read | Policy hold | Fixed: literal path under `${CLAUDE_PLUGIN_ROOT}` |
-| Uses a credential from the user's machine | Policy hold | Credentials now come from `userConfig` (secret marked `sensitive`). File fallbacks remain only for manual (non-plugin) installs — explain to reviewer |
+| Uses a credential from the user's machine | Policy hold | Intentional: Cowork cannot collect plugin settings, so the user's own Google OAuth client file and optional API key are read from `~/.creatoros`, created by the user during setup (README > Configuration) |
 | Files the validator couldn't inspect (`dist/*.mcpb`) | Policy hold | Fixed: removed from repo |
 | Image file the code could run (`icon.png`) | Policy hold | Plain PNG used only as the listing/extension icon — reviewer confirms |
 | Contains a download-and-run command | Note | Only in README install instructions for `uv`; nothing to change |

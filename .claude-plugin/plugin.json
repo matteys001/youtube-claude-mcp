@@ -1,7 +1,7 @@
 {
   "name": "creatoros-youtube",
   "displayName": "CreatorOS – YouTube Creator Intelligence",
-  "version": "0.3.4",
+  "version": "0.3.5",
   "description": "Ask Claude how your YouTube channel is really doing: private analytics, per-video bottlenecks, fair comparisons, best publishing times and audience questions. Read-only; runs locally on your computer.",
   "author": {
     "name": "Sumit Mattey",
@@ -17,27 +17,5 @@
     "creator",
     "content-strategy",
     "growth"
-  ],
-  "userConfig": {
-    "google_client_id": {
-      "type": "string",
-      "title": "Google OAuth Client ID",
-      "description": "Optional. From Google Cloud Console > Google Auth Platform > Clients > your 'Desktop app' client. If left empty (e.g. in Cowork, which doesn't ask for plugin settings), CreatorOS uses client_secret.json in the .creatoros folder of your user directory. See README > Configuration.",
-      "required": false
-    },
-    "google_client_secret": {
-      "type": "string",
-      "title": "Google OAuth Client Secret",
-      "description": "Optional. Client secret of the same Desktop app client (stored in secure storage). If empty, client_secret.json in .creatoros is used.",
-      "sensitive": true,
-      "required": false
-    },
-    "youtube_api_key": {
-      "type": "string",
-      "title": "YouTube Data API key (optional)",
-      "description": "Optional. Only needed to read comments; restrict it to 'YouTube Data API v3'. If empty, api_key.txt in .creatoros is used when present.",
-      "sensitive": true,
-      "required": false
-    }
-  }
+  ]
 }

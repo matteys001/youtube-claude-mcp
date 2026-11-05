@@ -9,7 +9,7 @@ The complete project wiki is available in [docs/wiki](docs/wiki/Home.md), includ
 
 # CreatorOS – YouTube Creator Intelligence for Claude
 
-![version](https://img.shields.io/badge/version-0.3.4-blue) ![plugin](https://img.shields.io/badge/Claude-plugin-orange) ![extension](https://img.shields.io/badge/Claude%20Desktop-extension%20(MCPB)-purple) ![access](https://img.shields.io/badge/YouTube%20access-read--only-green) ![license](https://img.shields.io/badge/license-MIT-lightgrey)
+![version](https://img.shields.io/badge/version-0.3.5-blue) ![plugin](https://img.shields.io/badge/Claude-plugin-orange) ![extension](https://img.shields.io/badge/Claude%20Desktop-extension%20(MCPB)-purple) ![access](https://img.shields.io/badge/YouTube%20access-read--only-green) ![license](https://img.shields.io/badge/license-MIT-lightgrey)
 
 ## Description
 
@@ -114,8 +114,7 @@ CreatorOS uses Google's official APIs. One-time setup (about 15 minutes):
 4. **Audience → Test users → Add users** → the Gmail that owns your channel → **Save**.
 5. **Clients → Create client → Desktop app → Create → Download JSON**.
 6. Give CreatorOS the client:
-   - **Plugin in Claude Code:** when you enable the plugin, Claude asks for **Google OAuth Client ID** and **Client Secret** (optional settings; the secret is kept in secure storage).
-   - **Plugin in Cowork:** Cowork does not ask for plugin settings, so save the downloaded JSON as `client_secret.json` in the `.creatoros` folder (same as the manual install below).
+   - **Plugin (Claude Code and Cowork):** save the downloaded JSON as `client_secret.json` in the `.creatoros` folder of your user directory (Windows: `mkdir "%USERPROFILE%\.creatoros"` then `move "%USERPROFILE%\Downloads\client_secret_*.json" "%USERPROFILE%\.creatoros\client_secret.json"`).
    - **Extension:** Settings → Extensions → CreatorOS → **Configure** → *Google OAuth client file* → select the JSON.
    - **Manual install:** save it as `client_secret.json` in the `.creatoros` folder of your user directory
      (Windows: `move "%USERPROFILE%\Downloads\client_secret_*.json" "%USERPROFILE%\.creatoros\client_secret.json"` after `mkdir "%USERPROFILE%\.creatoros"`).
@@ -127,7 +126,7 @@ CreatorOS uses Google's official APIs. One-time setup (about 15 minutes):
 YouTube only allows comment reading through OAuth with a *write-capable* permission, which CreatorOS deliberately does not request.
 1. **APIs & Services → Credentials → + Create credentials → API key**, name `CreatorOS Comments`.
 2. **API restrictions:** select **YouTube Data API v3**. **Application restrictions:** None. **Create**, copy the key.
-3. **Plugin:** enter it in the plugin's *YouTube Data API key* setting. **Extension:** Configure → *YouTube Data API key*. **Manual:** save it in `.creatoros\api_key.txt`.
+3. **Plugin / manual install:** save it in `.creatoros\api_key.txt`. **Extension:** Configure → *YouTube Data API key*. **Manual:** save it in `.creatoros\api_key.txt`.
 
 ### 3. Connect your channel
 

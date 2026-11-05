@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.3.5 — 2026-11-05
+- Plugin no longer declares settings, so the server starts in Cowork (which cannot collect plugin settings). Credentials are read from `.creatoros` (`client_secret.json`, optional `api_key.txt`).
+
 ## 0.3.4 — 2026-11-05
 - Repository moved to github.com/matteys001/youtube-claude-mcp; all links updated.
 
