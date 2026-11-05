@@ -17,3 +17,4 @@ dist/
 .claude-plugin/
 .mcp.json
 skills/
+TERMS.md

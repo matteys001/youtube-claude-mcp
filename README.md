@@ -217,6 +217,10 @@ CreatorOS runs locally and has no servers or telemetry. Full policy: **[PRIVACY.
 
 CreatorOS's use of information received from Google APIs adheres to the [Google API Services User Data Policy](https://developers.google.com/terms/api-services-user-data-policy), including the Limited Use requirements.
 
+## Terms of Use
+
+See [TERMS.md](https://github.com/matteys001/youtube-claude-mcp/blob/main/TERMS.md). Independent project; not affiliated with or endorsed by Google, YouTube or Anthropic.
+
 ## Support
 
 - Issues and feature requests: https://github.com/matteys001/youtube-claude-mcp/issues
